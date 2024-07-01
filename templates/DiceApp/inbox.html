@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .message {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .message:hover {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .message h2 {
+            color: #007bff;
+            margin-top: 0;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .message p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .message button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .message button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Different Message Types */
+
+        .deposit {
+            border-left: 5px solid #28a745;
+        }
+
+        .withdraw {
+            border-left: 5px solid #dc3545;
+        }
+
+        .win {
+            border-left: 5px solid #17a2b8;
+        }
+
+        .loss {
+            border-left: 5px solid #ffc107;
+        }
+
+        /* .message.deposit.show-details {
+            height: auto;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+         */
+
+        </style
+    </style>
+    <title>Inbox</title>
+</head>
+
+<body>
+    <!-- Content for Inbox -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1>Inbox</h1>
+
+                {% if deposit_messages %} {% for deposit_message in deposit_messages reversed %}
+                <div class="message deposit" id="deposit-message-{{ forloop.counter }}">
+                    <h2>Deposit success</h2>
+                    <p>Date: {{ deposit_message.date|date:"F j, Y" }}</p>
+                    <p>{{ deposit_message.message }}</p>
+                    <button type="button" onclick="window.location.href='{% url 'view_all_deposits' %}'">View
+                        Details</button>
+
+                </div>
+                {% endfor %} {% endif %}
+
+
+
+                <!-- Withdraw Message -->
+                <div class="message withdraw">
+                    <h2>Withdrawal Request</h2>
+                    <p>Date: December 7, 2023</p>
+                    <p>You have requested a withdrawal of &#x20B9;50. Pending approval.</p>
+                    <button type="button">View Status</button>
+                </div>
+
+                <!-- Win Message -->
+                <div class="message win">
+                    <h2>Congratulations! You Won</h2>
+                    <p>Date: December 7, 2023</p>
+                    <p>Congratulations! You won &#x20B9;50 in the latest game.</p>
+                    <button type="button">Claim Prize</button>
+                </div>
+
+                <!-- Loss Message -->
+                <div class="message loss">
+                    <h2>Sorry! You Lost</h2>
+                    <p>Date: December 7, 2023</p>
+                    <p>Unfortunately, you lost &#x20B9;20 in the recent game.</p>
+                    <button type="button">Review Game</button>
+                </div>
+
+                <!-- Add more messages as needed -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- End of content -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- sucess message -->
+    {% comment %}
+    <script>
+        function toggleDepositDetails(index) {
+            const detailsDiv = document.getElementById(`deposit-${index}`).getElementsByClassName('details')[0];
+            if (detailsDiv.style.display === 'none' || detailsDiv.style.display === '') {
+                detailsDiv.style.display = 'block';
+            } else {
+                detailsDiv.style.display = 'none';
+            }
+        }
+    </script> {% endcomment %}
+
+
+
+</body>
+
+</html>

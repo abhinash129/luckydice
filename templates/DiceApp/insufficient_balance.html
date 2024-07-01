@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insufficient Balance</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        /* Base styles */
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: linear-gradient(to right, #f3e7e9, #e3eeff);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            max-width: 600px;
+            width: 90%;
+            margin: 20px;
+            /* Added margin for better spacing */
+        }
+
+        .message {
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            /* Spacing between buttons */
+        }
+
+        .buttons button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Button shadow */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .buttons button:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+
+        /* Responsive design using media queries */
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+                /* Center buttons vertically */
+            }
+
+            .buttons button {
+                width: 100%;
+                margin: 10px 0;
+                /* Adjusted margin for better spacing */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            .buttons button {
+                padding: 12px 24px;
+                /* Adjusted padding for smaller screens */
+                font-size: 0.9em;
+            }
+        }
+
+        /* Animation keyframes */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="message">
+            <p>Insufficient balance Please Add cash</p>
+        </div>
+        <div class="buttons">
+            <button onclick="goToHome()">Home</button>
+            <button onclick="goToAddCash()">Add Cash</button>
+        </div>
+    </div>
+
+
+    <script>
+        // scripts.js
+        function goToHome() {
+            window.location.href = '{% url "home" %}'; // Replace with your actual home page URL
+        }
+
+        function goToAddCash() {
+            window.location.href = '{% url "add_cash" %}'; // Replace with your actual add cash page URL
+        }
+    </script>
+</body>
+
+</html>

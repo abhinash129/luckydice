@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff738c, #fd6f96, #ff5e62);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .user-details-container {
+            width: 500px;
+            height: 550px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .user-details-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .user-details img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #ff5e62;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            margin-bottom: 15px;
+            color: #ff5e62;
+        }
+        
+        p {
+            margin: 0;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+        }
+        
+        .membership-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .membership-icon {
+            font-size: 28px;
+            color: #ff5e62;
+            margin-right: 10px;
+        }
+        
+        .premium {
+            background-color: #ff5e62;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .additional-details {
+            text-align: left;
+            margin-top: 30px;
+            border-top: 2px solid #ff5e62;
+            padding-top: 20px;
+            color: #4a4a4a;
+        }
+        
+        .additional-details p {
+            margin: 8px 0;
+        }
+        
+        .additional-details strong {
+            color: #ff5e62;
+        }
+        
+        .user-details-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+        
+        .user-details-container::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: url('https://www.transparenttextures.com/patterns/dark-wood-1.png') repeat;
+            opacity: 0.1;
+            z-index: -2;
+            border-radius: 50%;
+        }
+    </style>
+    <title>User Details</title>
+</head>
+
+<body>
+    <div class="user-details-container">
+        <div class="text-center user-details">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+            <h2>Malik Babu</h2>
+            <p><i class="fas fa-user"></i> Username: malibabu123</p>
+            <p><i class="fas fa-user"></i> Username: malibabu123</p>
+            <p><i class="fas fa-envelope"></i> Email: malibabu@example.com</p>
+
+            <div class="additional-details">
+                <p><strong>Country:</strong> India</p>
+                <p><strong>Joined:</strong> December 7, 2023</p>
+                <p><strong>Last Login:</strong> December 10, 2023</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

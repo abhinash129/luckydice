@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff738c, #fd6f96, #ff5e62);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .user-details-container {
+            width: 500px;
+            height: 550px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .user-details-container:hover {
+            transform: scale(1.05);
+        }
+
+        .user-details img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #ff5e62;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #ff5e62;
+        }
+
+        p {
+            margin: 0;
+            color: #4a4a4a;
+            margin-bottom: 15px;
+        }
+
+        .membership-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .membership-icon {
+            font-size: 28px;
+            color: #ff5e62;
+            margin-right: 10px;
+        }
+
+        .premium {
+            background-color: #ff5e62;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .additional-details {
+            text-align: left;
+            margin-top: 30px;
+            border-top: 2px solid #ff5e62;
+            padding-top: 20px;
+            color: #4a4a4a;
+        }
+
+        .additional-details p {
+            margin: 8px 0;
+        }
+
+        .additional-details strong {
+            color: #ff5e62;
+        }
+
+        .user-details-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
+        .user-details-container::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: url('https://www.transparenttextures.com/patterns/dark-wood-1.png') repeat;
+            opacity: 0.1;
+            z-index: -2;
+            border-radius: 50%;
+        }
+
+        .username {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: #333;
+            /* Set your desired text color */
+        }
+
+        /* Add your own custom styling for form elements */
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <title>Profile Settings</title>
+</head>
+
+<body>
+    <!-- <div class="user-details-container">
+        <div class="text-center user-details">
+            <img src="{{ profile_picture }}" alt="Profile Picture">
+            <h2>{{ full_name }}</h2>
+            <p class="username"><i class="fas fa-user"></i> Username: {{ username }}</p>
+            <p><i class="fas fa-envelope"></i> Email: {{ email }}</p>
+
+            <div class="additional-details">
+                <p><strong>Country:</strong> {{ country }}</p>
+                <p><strong>Joined:</strong> {{ joined_date }}</p>
+                <p><strong>Last Login:</strong> {{ last_login }}</p>
+            </div>
+        </div> -->
+
+    <!-- Form for Profile Settings -->
+    <form>
+        <label for="profilePicture">Profile Picture:</label>
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+        <small>Upload a profile picture (JPEG, PNG, or GIF)</small>
+
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+
+        <!-- Add more form fields for other settings as needed -->
+
+        <!-- Save Button -->
+        <button type="button" onclick="saveProfileSettings()">Save Settings</button>
+    </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // Add any additional scripts specific to your Profile Settings page
+
+        function saveProfileSettings() {
+            // Add logic to save settings (e.g., send an API request)
+            alert('Settings saved!');
+        }
+    </script>
+</body>
+
+</html>

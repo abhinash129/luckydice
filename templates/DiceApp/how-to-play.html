@@ -1,0 +1,96 @@
+{% extends "DiceApp/base.html" %}
+{% load static %}
+
+{% block About %} How to play {% endblock About %}
+
+{% block main-content %}
+<link rel="stylesheet" type="text/css" href="{% static 'DiceApp/css/how-to-play.css' %}">
+<div class="how-to-play-content">
+    <div class="how-to-play-heading">
+        <h1 class="stylish-heading">HOW TO PLAY <span style="color: #940B0B;font-family: 'Pacifico', cursive;">LUCKY
+                DICE</span> GAME <br> STEP-BY-STEP GUIDE</h1>
+    </div>
+
+    <p>Playing the Lucky Dice cash game on our website offers an exciting opportunity to test your luck and strategy
+        while having the chance to win amazing prizes. By following this step-by-step guide, you can dive into the world
+        of online Lucky Dice and experience the thrill of this traditional game with a modern twist.</p>
+
+    <div class="how-to-play">
+        <img src="{% static 'DiceApp/images/Dice-hero.jpg' %}" alt="Lucky Dice Game">
+    </div>
+
+    <div class="steps">
+        <h3>STEP 1: ACCESSING THE PLATFORM</h3>
+        <ul>
+            <li>Open your preferred web browser and visit our website, or download our Lucky Dice app.</li>
+            <li>If you're new to our website, sign up for an account using your email or mobile number and complete the
+                registration process.</li>
+        </ul>
+
+        <h3>STEP 2: NAVIGATING TO LUCKY DICE</h3>
+        <ul>
+            <li>Once logged in, navigate through the platform's game offerings and find the real Lucky Dice game.</li>
+        </ul>
+
+        <h3>STEP 3: PLACING BETS</h3>
+        <ul>
+            <li>Upon entering the Lucky Dice game, you'll be presented with a virtual betting table. Different bet
+                amounts
+                will be displayed, allowing you to choose your preferred symbol.</li>
+            <li>This game involves six dice, each with six sides, and each side has a symbol on it. The gamer should
+                predict
+                which symbol, out of the six, will show face up many times after a roll. The symbols include:
+                <ul>
+                    <li>HORSE</li>
+                    <li>LION</li>
+                    <li>PANDA</li>
+                    <li>ELEPHANT</li>
+                    <li>DEER</li>
+                    <li>MONKEY</li>
+                </ul>
+            </li>
+            <li>Click on the desired chip value to select your bet amount.</li>
+            <li>Place your bet by clicking on the area of the table that corresponds to the outcome you're betting on.
+            </li>
+        </ul>
+
+        <h3>STEP 4: ROLLING THE DICE</h3>
+        <ul>
+            <li>After placing your bet, press the 'Roll' button to initiate the dice roll.</li>
+            <li>The symbols determine the outcome of the game.</li>
+        </ul>
+
+        <h3>STEP 5: UNDERSTANDING WINNING COMBINATIONS</h3>
+        <ul>
+            <li>Each symbol on the dice represents a different value.</li>
+            <li>The game's primary objective is to predict which symbols will appear face-up the most.</li>
+            <li>Payouts are based on the number of times a chosen symbol appears face-up among all the dice.</li>
+        </ul>
+
+        <h3>STEP 6: WINNING AND PAYOUTS</h3>
+        <ul>
+            <li>If your chosen symbol appears on one or more dice, you win based on the odds associated with that
+                symbol.
+            </li>
+            <li>Payouts vary depending on the rarity of the symbol's appearance. Common symbols offer smaller payouts,
+                while
+                rare symbols yield higher rewards.</li>
+        </ul>
+
+        <h3>STEP 7: COLLECTING YOUR WINNINGS</h3>
+        <ul>
+            <li>If you win, the winnings will be instantly credited to your our website account.</li>
+            <li>You can use these winnings to play more rounds of the Lucky Dice King game or other slots on our
+                platform.
+            </li>
+        </ul>
+
+        <h3>READ MORE: USEFUL OUR WEBSITE ACCOUNT INFORMATION</h3>
+        <ul>
+            <li><a href="#">Account Verification</a></li>
+            <li><a href="#">Money Withdrawal</a></li>
+            <li><a href="#">Account Registration</a></li>
+            <li><a href="#">Account Verification</a></li>
+        </ul>
+    </div>
+    {% endblock main-content %}

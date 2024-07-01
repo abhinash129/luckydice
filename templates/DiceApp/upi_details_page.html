@@ -1,0 +1,98 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Styles for the UPI details page */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        
+        .upi-details-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        h1 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        
+        .upi-details-form {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+        }
+        
+        .upi-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .submit-button {
+            background-color: #007bff;
+            /* Blue color for the button */
+            color: #fff;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+    </style>
+    <title>UPI Details</title>
+</head>
+
+<body>
+    <div class="upi-details-container">
+        <h1>Enter UPI Account</h1>
+        <form class="upi-details-form">
+            <label for="upi-id">Enter your UPI ID:</label>
+            <br>
+            <input type="text" id="upi-id" name="upiId" class="upi-input" placeholder="Eg XYZ@Bank" required>
+
+            <button type="button" class="submit-button" onclick="submitUpiDetails()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitUpiDetails() {
+            // Add logic to handle the submission of UPI details
+            // You can use AJAX to send the details to the server
+            alert("UPI details submitted successfully!");
+        }
+    </script>
+</body>
+
+</html>

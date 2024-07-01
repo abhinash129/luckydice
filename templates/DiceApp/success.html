@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .success-container {
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .success-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 18px;
+        }
+        
+        .back-to-home {
+            margin-top: 30px;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #fff;
+            color: #4CAF50;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-to-home:hover {
+            background-color: #e0e0e0;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="success-container">
+        <div class="success-icon">&#10004;</div>
+        <h1>Success!</h1>
+        <p>Your transaction was completed successfully.</p>
+        <a href="{% url 'check_balance' %}" class="back-to-home">Check Balance</a>
+        <a href="{% url 'profile' %}" class="back-to-home">Play Now</a>
+    </div>
+</body>
+
+</html>

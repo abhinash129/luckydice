@@ -1,0 +1,105 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #0056b3, #65b3ff, #739eff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .balance-container {
+            width: 400px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            text-align: center;
+            color: #0056b3;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: #003366;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .balance-amount {
+            font-size: 48px;
+            color: #003366;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .balance-info {
+            color: #4a4a4a;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .balance-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        
+        .action-button {
+            padding: 12px 24px;
+            background-color: #003366;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .action-button:hover {
+            background-color: #002240;
+        }
+    </style>
+    <title>My Balance</title>
+</head>
+
+<body>
+    <div class="balance-container">
+        <h2>My Balance</h2>
+        <div class="balance-amount">&#x20B9;{{ latest_balance }}</div>
+        <div class="balance-info">
+            <p>Your current balance as of {{ latest_balance }}</p>
+        </div>
+        <div class="balance-actions">
+            <button class="action-button" onclick="openAddcash()">Deposit</button>
+            <button class="action-button" onclick="openWithdraw()">Withdraw</button>
+            <button class="action-button" onclick="openhome()">Start Game</button>
+        </div>
+
+    </div>
+    <script>
+        function openAddcash() {
+            window.location.href = '{% url "initiate_payment" %}';
+        }
+
+        function openWithdraw() {
+            // Replace 'user-profile.html' with the actual file name or path you want to open
+            window.location.href = '{% url "Withdraw" %}';
+        }
+
+        function openhome() {
+            window.location.href = "{% url 'profile' %}"
+        }
+    </script>
+</body>
+
+</html>

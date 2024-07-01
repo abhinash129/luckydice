@@ -1,0 +1,1237 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Dice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        
+.header {
+    font-size: 2.5em;
+    text-align: center;
+    color: #333; /* Darken text color */
+    margin-bottom: 20px;
+}
+
+/* Wallet container styles */
+.wallet-container {
+    position: absolute; /* Position absolutely */
+    top: 100px; /* Adjust top position as needed */
+    left: 20px; /* Align to the left */
+    width: 200px; /* Set a fixed width */
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    margin-bottom: 20px; /* Add margin bottom */
+}
+
+.wallet-info {
+    margin-right: 20px;
+}
+
+.virtual-money {
+    font-size: 18px;
+    color: #08a136; /* Adjust color as needed */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+/*.wallet-info h3 {
+    margin-bottom: 5px;
+    color: #555; /* Darken text color */
+
+.balance {
+    font-size: 1.2em;
+    color: #4caf50; /* Green color for balance */
+}
+
+/* Add money button styles */
+.add-money-btn-container button {
+    padding: 10px 20px;
+    background-color: #4caf50; /* Green color for button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-money-btn-container button:hover {
+    background-color: #45a049; /* Darker shade of green on hover */
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    overflow: auto; /* Enable scrolling if content exceeds viewport */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto; /* Adjusted margin for centering */
+    padding: 20px;
+    border: none;
+    width: 50%; /* Set width to 50% */
+    max-width: 400px; /* Limit maximum width */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    position: relative;
+}
+
+
+
+/* Button container */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.button-container button {
+    padding: 12px 24px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #45a049;
+}
+
+
+
+.start-game-container {
+    text-align: center;
+}
+
+.start-button {
+    padding: 12px 24px;
+    font-size: 1.2em;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    animation: blink 1s linear infinite;
+}
+
+.start-button:hover {
+    background-color: #45a049;
+}
+
+.instruction-text {
+    font-size: 1.5em;
+    color: #666;
+    margin-top: 10px;
+
+}
+
+
+
+
+/* Title styles */
+.title {
+    font-size: 2em;
+    text-align: center;
+}
+    #roll{
+            padding: 10px;
+            font-size: 18px;
+            width: 100px;
+            background-color: #af4c54;
+            /* Green color for the button */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: auto;
+            transition: background-color 0.3s ease;
+        }
+        
+        #roll:hover {
+            background-color: #45a049;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .rotate-animation {
+            animation: rotate 0.3s linear infinite;
+        }
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #dfdfdf;
+}
+
+.container {
+    row-gap: 1px;
+    max-width: 800px; /* Adjusted max-width */
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+
+.game-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #000;
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+#countdown {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 10px;
+    animation: pulse 1s infinite;
+}
+
+.game-history-container {
+    position: absolute; /* Position absolutely */
+    top: 100px; /* Adjust top position as needed */
+    right: 20px; /* Align to the left */
+    width: 300px; /* Set a fixed width */
+    padding: 25px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    margin-bottom: 20px;
+}
+
+#game-history {
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: red;
+}
+
+#game-history h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #4caf50;
+    font-size: 1.5em;
+}
+
+#round-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* Add your remaining styles here */
+
+/* ... */
+
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.practice-game-btn {
+    margin-right: 10px;
+}
+
+    
+        .round-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        .round-number {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    
+        .dice-history {
+            width: 50px;
+            height: 50px;
+            margin-right: auto;
+            border: 0px solid #4caf50;
+            border-radius: 4px;
+        }
+    
+        .game-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.dice {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.dice:hover {
+    transform: scale(1.1);
+}
+
+
+        .dice-selected {
+            box-shadow: 0 0 8px rgb(1, 145, 56);
+        }
+    
+        #message {
+            margin-top: 10px;
+            color: #4caf50;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .game-history-container {
+            background-color: #f9f9f9;
+            padding: 0px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: auto;
+        }
+
+
+        .game-history-container {
+            text-align: left;
+        }
+
+        .game-history-container {
+    overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+}
+
+        #game-history {
+            max-width: 100%; /* Limit the maximum width of the result container */
+            overflow: hidden; /* Hide content that overflows the container */
+        }
+
+        #round-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            white-space: nowrap; /* Prevent line breaks */
+        }
+
+        .round-item {
+            display: inline-block; /* Display list items in a row */
+            margin-right: 10px; /* Add spacing between items */
+        }
+
+        
+
+    
+        #congratulations,
+        #sorry {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #4caf50;
+            font-size: 1.2em;
+        }
+    
+        .betting-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 5px;
+            text-align: center;
+            gap: 8px;
+        }
+    
+        .bet-amount:hover {
+            transform: scale(1.1);
+        }
+    
+        .choose-amount-btn {
+            padding: 10px 15px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+    
+        .choose-amount-btn:hover {
+            background-color: #455aa0;
+        }
+    
+        .bet-amount:hover {
+            transform: scale(1.3);
+        }
+    
+        .bet-amount {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.8s ease-in-out;
+        }
+    
+        .selected {
+            border-color: #45A049 !important;
+        }
+    
+        .selected-bet {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1em;
+            color: #40e91e;
+            color: #21dd21;
+            font-weight: bold;
+        }
+    
+        .selected-bet p {
+            margin: 0;
+        }
+    
+        .selected-bet span {
+            font-weight: bold;
+            color: #f1194f;
+        }
+    
+        @media (max-width: 768px) {
+            .game-container {
+                width: 90%;
+            }
+        }
+    
+        @media (max-width: 576px) {
+            .game-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Modal styles */
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        }
+
+        .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        }
+
+
+        /* Button styles */
+        #confirmBtn, #cancelBtn {
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        }
+
+        #confirmBtn {
+        background-color: #4CAF50; /* Green */
+        color: white;
+        border: none;
+        }
+
+        #cancelBtn {
+        background-color: #f44336; /* Red */
+        color: white;
+        border: none;
+        }
+
+    .modal-gameover {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+        overflow: auto;
+    }
+
+    .modal-gameover-content {
+        background-color: #fefefe;
+        margin:15% auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 50%; /* Adjust as needed */
+        max-width: 400px; /* Maximum width */
+        text-align: center;
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    /* Button container */
+    .button-gameover-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-gameover-container button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #4caf50; /* Green */
+    color: white;
+}
+
+.button-gameover-container button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+.start-game-text {
+  color: #ff0000; /* Set your desired color */
+}
+
+.highlight {
+  color: #ff0000; /* Set your desired color */
+  font-weight: bold; /* Optionally, apply other styles */
+}
+
+    /* CSS to reduce space between containers and rows */
+    .container {
+        margin-bottom: 10px; /* Adjust the margin-bottom value as needed */
+    }
+    .row {
+        margin-bottom: 5px; /* Adjust the margin-bottom value as needed */
+    }
+
+    /* Modal Styles */
+.myModal {
+  display: none; /* Hide the modal by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scrolling if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+}
+
+/* Modal Content Styles */
+.myModal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* Center modal vertically */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 80%; /* Set width of modal content */
+  max-width: 800px; /* Limit maximum width */
+  text-align: center; /* Center text */
+}
+
+/* Game Result Styles */
+.game-result-container {
+  margin-bottom: 20px; /* Add space below game result */
+}
+
+.game-result h2 {
+  margin-bottom: 10px; /* Add space below heading */
+}
+
+/* Round List Styles */
+#round-list {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0;
+}
+
+#round-list li {
+  display: inline-block; /* Display list items horizontally */
+  margin: 5px; /* Add space between items */
+}
+
+#round-list li img {
+  width: 100px; /* Set image width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Button Container Styles */
+.button-container {
+  text-align: center; /* Center buttons */
+}
+
+/* Modal Button Styles */
+.modal-btn {
+  display: inline-block; /* Display buttons inline */
+  margin: 10px; /* Add space around buttons */
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Modal Button Hover Styles */
+.modal-btn:hover {
+  background-color: #45a049;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="header">Lucky Dice - Practice Game</h1>
+        <!-- <div class="modal-gameover-content">
+        </div> -->
+        <div class="wallet-container">
+            <!-- Wallet content -->
+            <div class="wallet-info">
+                <div class="virtual-money"><span>Virtual Money</span></div>
+                <div class="balance">Balance: <span id="walletBalance">100</span></div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="game-history-container" class="game-history-container">
+                        <div id="game-history">
+                            <h2>Your Selection</h2>
+                            
+                            <div id="message"></div>
+                            <div class="container" id="selectedBetContainer" style="display: none;"> 
+                                <div class="selecting-container">
+                                    <div class="row">
+                                        <div class="selected-bet">
+                                            <p>Selected Bet Amount: <span id="selectedBetAmount"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+          
+        <div class="start-game-container">
+            <button id="start-button" onclick="startGame()" class="start-button">Start Game</button>
+            <p id="instruction" class="instruction-text">Click <span class="start-game-text">Start Game</span> to begin the game</p>
+        </div>
+        
+        <div class="game-container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{% static 'DiceApp/images/lion.png' %}" alt="lion" class="dice" onclick="selectImage('lion.png', this)">
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static 'DiceApp/images/horse.png' %}" alt="horse" class="dice" onclick="selectImage('horse.png', this)">
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static 'DiceApp/images/monkey.png' %}" alt="monkey" class="dice" onclick="selectImage('monkey.png', this)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{% static 'DiceApp/images/panda.png' %}" alt="panda" class="dice" onclick="selectImage('panda.png', this)">
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static 'DiceApp/images/deer.png' %}" alt="deer" class="dice" onclick="selectImage('deer.png', this)">
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static 'DiceApp/images/elephant.png' %}" alt="elephant" class="dice" onclick="selectImage('elephant.png', this)">
+                </div>
+            </div>
+        </div>
+        
+        <div class="betting-container">
+            <div class="row">
+                <div class="bet-amount" onclick="setBet('10Rs')"> <img src="{% static 'DiceApp/images/10.png' %}" alt="Description of Image" width="100" height="100"></div>
+            </div>
+            <div class="row">
+                <div class="bet-amount" onclick="setBet('20Rs')"> <img src="{% static 'DiceApp/images/20.png' %}" alt="Description of Image" width="100" height="100"> </div>
+            </div>
+            <div class="row">
+                <div class="bet-amount" onclick="setBet('30Rs')"> <img src="{% static 'DiceApp/images/30.png' %}" alt="Description of Image" width="100" height="100"> </div>
+            </div>
+            <div class="row">
+                <div class="bet-amount" onclick="setBet('50Rs')"> <img src="{% static 'DiceApp/images/50.png' %}" alt="Description of Image" width="100" height="100"> </div>
+            </div>
+            <div class="row">
+                <div class="bet-amount" onclick="setBet('100Rs')"> <img src="{% static 'DiceApp/images/100.png' %}" alt="Description of Image" width="100" height="100"> </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <button class="choose-amount-btn" onclick="placeBet()">Place the Bet</button>
+            </div>
+        </div>
+        
+    
+        <div id="myModalConfirm" class="modal">
+            <div class="modal-content">
+                <h1>Bet Placed Successfully</h1>
+                <p>Do you want to place one more bet?</p>
+                <button id="confirmBtn">Yes</button>
+                <button id="cancelBtn">No</button>
+            </div>
+        </div>
+        
+        <div id="popupModal" class="myModal">
+            <div class="myModal-content">
+                <div class="game-result-container">
+                    <div class="game-result">
+                        <h2>Game Result</h2>
+                        <ul id="round-list"></ul>
+                        <div id="message"></div>
+                        <div id="congratulations"></div>
+                        <div id="sorry"></div>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <button onclick="playAgain()" class="modal-btn" id="playAgainBtn">Play Again</button>
+                    <button onclick="quitGame()" class="modal-btn" id="quitGameBtn">Start Real Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function playAgain(){
+            window.location.href = '{% url "PracticeGame" %}';
+        }
+
+        function quitGame() {
+            window.location.href = '{% url "profile" %}';
+        }
+        
+
+        function startGame() {
+            // Hide the start button and instruction text
+            document.getElementById("start-button").style.display = "none";
+            document.getElementById("instruction").innerHTML = "Choose an <span class='highlight'>image</span> for placing your bet.";
+            
+            // Start blinking effect for each image
+            const diceElements = document.querySelectorAll('.dice');
+            diceElements.forEach(element => {
+                element.style.animation = "blink 1s linear infinite";
+            });
+        }
+
+        let balance = 100; // Initial virtual currency balance
+
+        function updateBalance(amount) {
+            balance += amount;
+            document.getElementById("walletBalance").textContent = balance;
+        }
+
+        // Function to open the add money modal
+
+
+//Function to add money when confirmed
+function addMoneyConfirm() {
+    const amountToAdd = parseInt(document.getElementById('amountToAdd').value);
+    if (!isNaN(amountToAdd) && amountToAdd > 0) {
+        updateBalance(amountToAdd);
+        closeModal();
+    } else {
+        alert("Invalid input. Please enter a valid amount.");
+    }
+}
+
+
+
+        let selectedBet = ''; // Variable to store the selected betting amount
+
+        function setBet(amount) {
+    const betAmountElements = document.querySelectorAll('.bet-amount');
+    const betButton = document.querySelector('.choose-amount-btn');
+
+    // Stop blinking effect for all amounts
+    betAmountElements.forEach(amount => {
+        amount.style.animation = "none";
+    });
+
+    // Your logic for bet amount selection
+    // Update the selected bet amount
+    selectedBet = amount;
+    // Start blinking effect for the bet button
+    betButton.style.animation = "blink 1s linear infinite";
+
+    // Update instruction text
+    document.getElementById("instruction").innerHTML = "Click 'Place the Bet' to confirm your bet.";
+    
+}
+
+
+
+function placeBet() {
+    // Get the modal
+    var modal = document.getElementById("myModalConfirm");
+
+    // Get the buttons
+    var confirmBtn = document.getElementById("confirmBtn");
+    var cancelBtn = document.getElementById("cancelBtn");
+
+    const rollDiceAnimation = () => {
+        const diceElements = document.querySelectorAll('.dice');
+        diceElements.forEach(element => {
+            // Random rotation between 720 and 1080 degrees
+            const randomDegrees = Math.floor(Math.random() * 360) + 720;
+            // Apply rotation animation with random degrees
+            element.style.transition = 'transform 0.5s ease-in-out'; // Add smooth transition
+            element.style.transform = `rotate(${randomDegrees}deg)`;
+        });
+
+        // Wait for the animation to finish (adjust timing as needed)
+        setTimeout(() => {
+            const images = [
+                '{% static "DiceApp/images/lion.png" %}',
+                '{% static "DiceApp/images/horse.png" %}',
+                '{% static "DiceApp/images/monkey.png" %}',
+                '{% static "DiceApp/images/panda.png" %}',
+                '{% static "DiceApp/images/deer.png" %}',
+                '{% static "DiceApp/images/elephant.png" %}'
+            ];
+            const resultImages = [];
+
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * images.length);
+                resultImages.push(images[randomIndex]);
+            }
+
+            displayResult(resultImages);
+            checkResult(resultImages);
+            updateGameHistory(resultImages);
+            setTimeout(openPopupModal, 1000)
+
+            // Remove the rotate-animation class after the animation is complete
+            diceElements.forEach(element => element.classList.remove('rotate-animation'));
+
+            // Reset dice rotation to normal position
+            setTimeout(() => {
+                diceElements.forEach(element => {
+                    element.style.transition = 'transform 0s'; // Remove transition
+                    element.style.transform = 'rotate(0deg)'; // Reset rotation
+                });
+            }, 500); // Adjust timing if needed
+        }, 500); // Adjust timing if needed
+    };
+
+    const betButton = document.querySelector('.choose-amount-btn');
+
+    if (selectedBet !== '') {
+        if (selectedImagesCount === 0) {
+            alert('Please select at least one image.');
+            return;
+        }
+        const prevSelectedBet = selectedBet;
+        const prevSelectedImages = selectedImages.slice();
+
+        const betValue = getBetValue(selectedBet);
+        if (balance >= betValue) {
+            balance -= betValue;
+            document.getElementById('walletBalance').textContent = balance;
+            isBetPlaced = true;
+
+            // Display the modal
+            modal.style.display = "block";
+
+            // If the user clicks on confirm
+            confirmBtn.onclick = function() {
+                // Close the modal
+                modal.style.display = "none";
+                const repeatBet = true; // Simulate the user confirming the bet again
+                if (repeatBet) {
+                    selectedBet = prevSelectedBet;
+                    selectedImages = prevSelectedImages;
+                    selectedImagesCount = selectedImages.length;
+                } else {
+                    rollDiceAnimation();
+                    betButton.style.animation = "none"; // Stop blinking
+                }
+            };
+
+            // If the user clicks on cancel
+            cancelBtn.onclick = function() {
+                // Close the modal
+                modal.style.display = "none";
+                rollDiceAnimation();
+                betButton.style.animation = "none"; // Stop blinking
+            };
+        } else {
+            alert("Insufficient balance to place the bet.");
+        }
+    } else {
+        alert("Please choose a betting amount!");
+    }
+
+    // Hide instruction message after the button is clicked
+    document.getElementById("instruction").style.display = "none";
+}
+
+function resetDice() {
+    const diceElements = document.querySelectorAll('.dice');
+    diceElements.forEach(element => {
+        element.style.transition = 'none'; // Remove transition for instant reset
+        element.style.transform = 'rotate(0deg)';
+    });
+
+}
+
+
+
+        function getBetValue(amount) {
+            switch (amount) {
+                case '10Rs':
+                    return 10;
+                case '20Rs':
+                    return 20;
+                case '30Rs':
+                    return 30;
+                case '50Rs':
+                    return 50;
+                case '100Rs':
+                    return 100;
+                default:
+                    return 0;
+            }
+        }
+        const selectedImages = [];
+        let countdownTime = 20; // Initial countdown time in seconds
+        let selectedImagesCount = 0; // Track the count of selected images
+        let roundNumber = 0;
+        const maxRounds = 10;
+        const gameHistory = [];
+        const initialImages = [
+        '{% static "DiceApp/images/lion.png" %}',
+        '{% static "DiceApp/images/horse.png" %}',
+        '{% static "DiceApp/images/monkey.png" %}',
+        '{% static "DiceApp/images/panda.png" %}',
+        '{% static "DiceApp/images/deer.png" %}',
+        '{% static "DiceApp/images/elephant.png" %}'
+        ];
+
+        function updateGameHistory(result) {
+    roundNumber++;
+    gameHistory.push(result);
+    console.log('Round Number:', roundNumber); // Log roundNumber to console
+    console.log('Game History:', gameHistory); // Log gameHistory to console
+
+    const roundList = document.getElementById('round-list');
+    const listItem = document.createElement('li');
+    listItem.className = 'round-item';
+    listItem.innerHTML = `${result.map(image => `<img src="${image}" alt="${image}" class="dice-history">`).join('')}`;
+    roundList.appendChild(listItem);
+
+    if (roundNumber === maxRounds) {
+        // Game over, open modal
+        console.log('Updating game history...');
+    }
+}
+
+function openPopupModal() {
+    console.log("Modal is being opened.");
+    var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("popupModal");
+    modal.style.display = "block";
+}
+
+
+function selectImage(imageName, element) {
+    const selectedSymbol = imageName.split('/').pop().split('.')[0];
+    const isAlreadySelected = selectedImages.includes(selectedSymbol);
+    const diceElements = document.querySelectorAll('.dice');
+    const betAmountElements = document.querySelectorAll('.bet-amount');
+    const instructionMessage = document.getElementById("instruction");
+
+    // Stop blinking effect for all images and amounts
+    diceElements.forEach(dice => {
+        dice.style.animation = "none";
+    });
+    betAmountElements.forEach(amount => {
+        amount.style.animation = "none";
+    });
+
+    if (!isAlreadySelected) {
+        // Image is not already selected, add it
+        selectedImages.push(selectedSymbol);
+        element.classList.add('dice-selected');
+        selectedImagesCount++;
+        updateBettingAmount(); // Update the betting amount for each selected image
+        
+        // Start blinking effect for each amount
+        betAmountElements.forEach(amount => {
+            amount.style.animation = "blink 1s linear infinite";
+        });
+
+        // Update instruction message
+        instructionMessage.innerHTML = "Choose the <span class='highlight'>amount</span> for placing the bet.";
+    } else {
+        // Image is already selected, remove it
+        const index = selectedImages.indexOf(selectedSymbol);
+        selectedImages.splice(index, 1);
+        element.classList.remove('dice-selected');
+        selectedImagesCount--;
+        updateBettingAmount(); // Update the betting amount when deselecting an image
+    }
+    displayMessage();
+}
+
+
+        function updateBettingAmount() {
+            const betAmountElement = document.getElementById('selectedBetAmount');
+            let betValue = 0;
+            
+            switch (selectedImagesCount) {
+                case 1:
+                    betValue = selectedBet;
+                    break;
+                case 2:
+                    betValue = selectedBet;
+                    break;
+                case 3:
+                    betValue = selectedBet;
+                    break;
+                case 4:
+                    betValue = selectedBet;
+                    break;
+                case 5:
+                    betValue = selectedBet;
+                case 6:
+                    betValue = selectedBet;    
+                // Add more cases or customize the logic as needed
+                default:
+                    betValue = 0;
+                    break;
+            }
+
+            selectedBet = `${betValue}`; // Update the selected betting amount
+            betAmountElement.textContent = selectedBet;
+        }
+        
+        function displayMessage() {
+            const messageContainer = document.getElementById('message');
+            const selectedImageNames = selectedImages.map(image => image.split('.')[0]); // Extract names without extensions
+            messageContainer.textContent = selectedImages.length > 0 ?
+                `You selected ${selectedImages.length} image${selectedImages.length > 1 ? 's' : ''}: ${selectedImageNames.join(', ')}.` :
+                '';
+        }
+       
+        function displayResult(resultImages) {
+    
+            const gameContainerImages = document.querySelectorAll('.game-container img');        
+            console.log("Result Images:", resultImages); // Log resultImages array to console    
+            resultImages.forEach((image, index) => {
+        
+                console.log("Image URL:", image); // Log each image URL to console        
+                gameContainerImages[index].src = image;        
+                gameContainerImages[index].alt = image;    
+            });
+             
+        }
+
+        function checkResult(resultImages) {
+    const congratsContainer = document.getElementById('congratulations');
+    const sorryContainer = document.getElementById('sorry');
+
+    congratsContainer.textContent = '';
+    sorryContainer.textContent = '';
+
+    const symbolCounts = {};
+
+    resultImages.forEach(image => {
+        const symbol = image.split('/').pop().split('.')[0]; // Extract only the image name without the path
+        symbolCounts[symbol] = (symbolCounts[symbol] || 0) + 1;
+    });
+
+    selectedImages.forEach(selectedImage => {
+        const selectedSymbol = selectedImage.split('/').pop().split('.')[0]; // Extract only the image name without the path
+        const selectedSymbolCount = symbolCounts[selectedSymbol] || 0;
+
+        console.log('Symbol Counts:', symbolCounts);
+        console.log('Selected Symbol:', selectedSymbol);
+        console.log('Selected Symbol Count:', selectedSymbolCount);
+
+        // Rest of the code remains the same
+        if (selectedSymbolCount >= 2) {
+            const multiplier = selectedSymbolCount;
+            const symbolMessage = document.createElement('p');
+            const betValue = getBetValue(selectedBet);
+            const amountWon = betValue * multiplier;
+            
+            symbolMessage.textContent = `Congratulations! You got ${selectedSymbolCount} ${selectedSymbol}s. You won ${amountWon} Rs.`;
+            congratsContainer.appendChild(symbolMessage);
+            updateBalance(amountWon);
+        } else {
+            const symbolMessage = document.createElement('p');
+            symbolMessage.textContent = `Better Luck Next time! You did not get more than 1 ${selectedSymbol}s.`;
+            sorryContainer.appendChild(symbolMessage);
+        }
+    });
+}
+
+
+
+            // Start a new game after 20 seconds
+            // setTimeout(() => {
+            //     const gameContainerImages = document.querySelectorAll('.game-container img');
+            //     gameContainerImages.forEach((image, index) => {
+            //         image.src = initialImages[index];
+            //         image.alt = initialImages[index];
+            //     });
+            //     resetGame();
+            //     alert('A new game will start.');
+            // }, 20000);
+        
+
+        // function resetGame() {
+        //     selectedImages.length = 0; // Clear selected images
+        //     const diceElements = document.querySelectorAll('.dice');
+        //     diceElements.forEach(element => element.classList.remove('dice-selected'));
+        //     const messageContainer = document.getElementById('message');
+        //     messageContainer.textContent = '';
+        //     const resultContainer = document.getElementById('result-images');
+        //     resultContainer.innerHTML = '';
+        //     const congratsContainer = document.getElementById('congratulations');
+        //     const sorryContainer = document.getElementById('sorry');
+        //     congratsContainer.textContent = '';
+        //     sorryContainer.textContent = '';
+        //     // Reset countdown time
+        //     countdownTime = 20;
+        //     updateCountdownDisplay();
+        //     selectedBet = ''; // Reset selected betting amount
+        //     // updateSelectedBetDisplay(); // Update the displayed selected betting amount
+        //     // isBetPlaced = false; // Reset the betting state
+        //     selectedImagesCount = 0; // Reset the selected image count
+        //     updateBettingAmount(); // Reset the betting amount display
+        // }
+        function updateSelectedBetDisplay() {
+            const selectedBetAmountElement = document.getElementById('selectedBetAmount');
+            selectedBetAmountElement.textContent = selectedBet; // Display 'None' if no bet selected
+            document.getElementById('selectedBetContainer').style.display = 'block';
+        }
+
+        function setBet(amount) {
+    const betAmountElements = document.querySelectorAll('.bet-amount');
+    const betButton = document.querySelector('.choose-amount-btn');
+
+    // Stop blinking effect for all amounts
+    betAmountElements.forEach(amount => {
+        amount.style.animation = "none";
+    });
+
+    // Your logic for bet amount selection
+    // Update the selected bet amount
+    selectedBet = amount;
+
+    // Start blinking effect for the bet button
+    betButton.style.animation = "blink 1s linear infinite";
+
+    // Update instruction text
+    document.getElementById("instruction").innerHTML = "Click '<span class='highlight'>Place the Bet</span>' to confirm your bet.";
+
+    updateSelectedBetDisplay()
+}
+    //     function setBet(amount) {
+    // // Update the selected bet amount
+    // document.getElementById('selectedBetAmount').textContent = amount;
+    // }
+        // function updateCountdownDisplay() {
+        //     const countdownElement = document.getElementById('countdown');
+        //     countdownElement.textContent = `Time Left: ${countdownTime}s`;
+        // }
+       // Countdown timer function
+        // function startCountdown() {
+        //     updateCountdownDisplay();
+        //     const countdownInterval = setInterval(() => {
+        //         countdownTime--;
+        //         updateCountdownDisplay();
+
+        //         if (countdownTime === 0) {
+        //             clearInterval(countdownInterval);
+        //             resetGame();
+        //             rollDiceAnimation(); // Start a new game after the countdown reaches zero
+        //         }
+        //     }, 1000);
+        // }
+        // Start the countdown when the page loads
+        // document.addEventListener('DOMContentLoaded', startCountdown);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        .withdraw-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .winning-amount {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #28a745;
+            /* Green color for winning amount */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            /* Blue color for the button */
+            color: #fff;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+
+        .error-message {
+            color: #dc3545;
+            /* Red color for error messages */
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* New container styles */
+
+        .withdraw-options-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .withdraw-option {
+            text-align: center;
+        }
+
+        .option-button {
+            background-color: #28a745;
+            /* Green color for the option buttons */
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .option-button:hover {
+            background-color: #218838;
+            /* Darker green on hover */
+        }
+
+        .option-logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .withdraw-button {
+            background-color: #007bff;
+            /* Blue color for the button */
+            color: #fff;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 200px;
+        }
+    </style>
+    <title>Withdraw Page</title>
+</head>
+
+<body>
+    <div class="withdraw-container">
+        <h1>Withdrawal</h1>
+        <p class="winning-amount">Winnings: &#x20B9;{{ latest_balance }}</p>
+        <form>
+            <label for="withdraw-amount">Enter Withdrawal Amount (₹):</label>
+            <input type="number" id="withdraw-amount" name="withdrawAmount" min="100" required>
+        </form>
+        <p class="error-message" id="withdrawal-message"></p>
+
+        <p>Withdraw to your Account</p>
+        <!-- Withdraw options and button in the same container -->
+        <div class="withdraw-options-container">
+            <div class="withdraw-option">
+                <a href="{% url 'bank_details' %}" class="option-button">
+                    <img src="{% static 'DiceApp/images/bank.png' %}" alt="Bank Logo" class="option-logo"> Bank Account
+                </a>
+            </div>
+            <div class="withdraw-option">
+                <a href="{% url 'upi_details_page' %}" class="option-button">
+                    <img src="{% static 'DiceApp/images/upi.png' %}" alt="UPI Logo" class="option-logo"> UPI
+                </a>
+            </div>
+        </div>
+        <br>
+        <button type="button" onclick="validateWithdrawal()" class="withdraw-button">Withdraw</button>
+    </div>
+
+    <script>
+        function validateWithdrawal() {
+            var withdrawAmount = document.getElementById("withdraw-amount").value;
+            var withdrawalMessage = document.getElementById("withdrawal-message");
+
+            if (withdrawAmount < 100) {
+                withdrawalMessage.innerHTML = "Enter &#x20B9; 100 or more to withdraw";
+            } else {
+                withdrawalMessage.innerHTML = "";
+                // Add logic to handle the withdrawal process here
+                // You can use AJAX to send the withdrawal request to the server
+            }
+        }
+    </script>
+</body>
+
+</html>

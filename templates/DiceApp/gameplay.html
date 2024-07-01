@@ -1,0 +1,497 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Lucky Dice Game</title>
+    <link rel="stylesheet" href="{% static 'DiceApp/css/gamestyle.css' %}">
+
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-/5x/HY7t2TkI9pzpIbBS5ldD9A6OxFr5vHf93+OPUNJea/Fa3+eAFvInfsqPz3x2hPNDtN/1fPyP6vZ4L1pZyHg==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <style>
+        .play-quit-containers {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            z-index: 1000;
+        }
+    </style>
+
+
+</head>
+<!-- User Profile Section -->
+<div class="username">
+    <p>Welcome, <span id="username">{{username}}</span>!</p>
+</div>
+<div id="user-profile-section">
+    <div id="close-profile-btn" onclick="toggleUserProfile()"><i class="far fa-times-circle"></i></div>
+
+    <div class="btn-group-vertical">
+
+        <button type="button" class="btn btn-primary" onclick="openUserProfilePage()"><i class="fas fa-user"></i>{{username}}</button>
+        <button type="button" class="btn btn-primary" onclick="openMybalance()"><i class="fas fa-indian-rupee-sign"></i> My Balance:{{balance}}</button>
+        <button type="button" class="btn btn-primary" onclick="openAddcash()"><i class="fas fa-sack-dollar"></i> Add Cash</button>
+        <button type="button" class="btn btn-primary" onclick="openSetting()"><i class="fas fa-gear"></i> Profile Settings</button>
+        <button type="button" class="btn btn-warning" onclick="openInbox()"><i class="fas fa-envelope"></i> Inbox</button>
+        <button type="button" class="btn btn-info" onclick="openGamehistory()"><i class="fas fa-file"></i> Game History</button>
+        <button type="button" class="btn btn-danger" onclick="openWithdraw()"><i class="fas fa-money-bill-transfer"></i> Withdrawal</button>
+        <button type="button" class="btn btn-primary" onclick="openLogout()"><i class="fas fa-signout"></i> Logout</button>
+    </div>
+</div>
+
+<!-- User Profile Menu -->
+<div id="user-profile-menu" onclick="toggleUserProfile()"><i class="fas fa-bars"></i></div>
+
+
+
+<body>
+    <div class="play-quit-containers">
+        <button class="btn btn-primary" onclick="playAgain()">Play Again</button>
+        <button class="btn btn-danger" onclick="quitGame()">Quit Game</button>
+    </div>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div id="bet-history">
+                    <h2 class="text-center" style="color: #007bff;">Bet History</h2>
+                    <!-- Add content as needed -->
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div id="dice-section">
+
+                    <div id="dice-container">
+                        <!-- Dice Images -->
+                        <img id="img1" src="{% static 'DiceApp/images/lion.png' %}" alt="lion" class="dice" onclick="selectImage('lion.png', this)">
+                        <img id="img2" src="{% static 'DiceApp/images/horse.png' %}" alt="horse" class="dice" onclick="selectImage('horse.png', this)">
+                        <img id="img3" src="{% static 'DiceApp/images/monkey.png' %}" alt="monkey" class="dice" onclick="selectImage('monkey.png', this)">
+                        <img id="img4" src="{% static 'DiceApp/images/panda.png' %}" alt="panda" class="dice" onclick="selectImage('panda.png', this)">
+                        <img id="img5" src="{% static 'DiceApp/images/deer.png' %}" alt="deer" class="dice" onclick="selectImage('deer.png', this)">
+                        <img id="img6" src="{% static 'DiceApp/images/elephant.png' %}" alt="elephant" class="dice" onclick="selectImage('elephant.png', this)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div id="result-display">
+
+                    <!-- Add content as needed -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="bet-placement">
+                    <p id="bet-placement-message"></p>
+                    <button class="btn btn-success" id="betButton" onclick="placeBet()">Bet</button>
+                    <button class="btn btn-secondary" id="editButton" onclick="editBet()">Edit</button>
+                    <p id="bet-success-message" style="display: inline-block; color: green;" class="hidden">Bet successfully!</p>
+                    <div id="previous-bets" style="color: green;"></div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div id="currency-chips">
+
+                    <div class="currency-images">
+                        <img src="{% static 'DiceApp/images/10.png' %}" alt="10 Rs" class="currency" onclick="selectCurrency(10)">
+                        <img src="{% static 'DiceApp/images/20.png' %}" alt="20 Rs" class="currency" onclick="selectCurrency(20)">
+                        <img src="{% static 'DiceApp/images/30.png' %}" alt="30 Rs" class="currency" onclick="selectCurrency(30)">
+                        <img src="{% static 'DiceApp/images/50.png' %}" alt="50 Rs" class="currency" onclick="selectCurrency(50)">
+                        <img src="{% static 'DiceApp/images/100.png' %}" alt="100 Rs" class="currency" onclick="selectCurrency(100)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <form id="gameForm" method="post" action="{% url 'play_game' %}">
+        {% csrf_token %}
+        <input type="hidden" id="selectedImage" name="selected_image" value="">
+        <input type="hidden" id="betAmount" name="bet_amount" value="">
+    </form>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    let selectedDice = null;
+    let selectedAmount = null;
+    let canChooseBet = true;
+    let previousBets = [];
+
+    function selectImage(imageSrc, element) {
+        // Reset styling for previously selected dice
+        if (selectedDice) {
+            selectedDice.classList.remove('selected');
+        }
+
+        // Mark the selected dice
+        selectedDice = element;
+        selectedDice.classList.add('selected');
+
+        updateBetPlacementMessage();
+    }
+
+    function selectCurrency(amount) {
+        // Mark the selected amount
+        selectedAmount = amount;
+
+        updateBetPlacementMessage();
+    }
+
+    function updateBetPlacementMessage() {
+        const betPlacementMessage = document.getElementById('bet-placement-message');
+
+        if (selectedDice && selectedAmount) {
+            const selectedDiceAlt = selectedDice.alt;
+            betPlacementMessage.innerHTML = `You chose ${selectedDiceAlt} and bet ${selectedAmount} Rs.`;
+        } else {
+            betPlacementMessage.innerHTML = '';
+        }
+    }
+
+    function confirmBetAmount(amount) {
+        return confirm(`Are you sure to bet with this amount of ${amount} Rs.?`);
+    }
+
+    function placeBet() {
+        if (!canChooseBet || !selectedDice || !selectedAmount) {
+            // If conditions are not met, return early
+            return;
+        }
+
+        console.log('Placing bet with amount:', selectedAmount);
+
+        // AJAX request to place the bet
+        jQuery.ajax({
+            type: 'POST',
+            url: '/place_bet/',  // Replace with your actual endpoint URL
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'),  // Include CSRF token
+            },
+            data: JSON.stringify({
+                selected_dice: selectedDice.alt,
+                selected_amount: selectedAmount,
+            }),
+            success: function (data) {
+                console.log('Response from /place_bet:', data);
+
+                if (data.status === 'success') {
+                    // Bet placed successfully, proceed to store game result
+                    storeGameResult();
+                } else {
+                    // Handle error case (e.g., insufficient funds)
+                    console.error(data.message);
+                }
+            },
+            error: function () {
+                console.error('Error placing bet.');
+            }
+        });
+    }
+
+    function storeGameResult() {
+        // Get the result images (replace with actual result images)
+        const resultImages = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6'];
+
+        // AJAX request to store the game result
+        jQuery.ajax({
+            type: 'POST',
+            url: '/store_game_result/',  // Replace with your actual endpoint URL
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            data: JSON.stringify({
+                result_images: resultImages,
+                bet_amount: selectedAmount,
+            }),
+            success: function (data) {
+                console.log('Response from /store_game_result:', data);
+
+                if (data.status === 'success') {
+                    // Game result stored successfully, update UI or perform other actions
+                    console.log('Game result stored successfully');
+                } else {
+                    // Handle error case
+                    console.error(data.message);
+                }
+            },
+            error: function () {
+                console.error('Error storing game result.');
+            }
+        });
+    }
+
+// Function to handle the response from fetch requests
+function handleResponse(response) {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+}
+
+
+// Helper function to handle the fetch response
+function handleResponse(response) {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+}
+
+
+
+
+        function rotateDiceImagesClockwise() {
+            const diceContainer = document.getElementById('dice-container');
+            const diceImages = diceContainer.querySelectorAll('.dice');
+
+            // Rotate each dice image with full speed for 4 seconds
+            diceImages.forEach((diceImage) => {
+                diceImage.style.transition = 'transform 4s linear';
+                diceImage.style.transform = `rotate(${360 * 5}deg)`; // Full rotation (5 times)
+            });
+
+            // After the rotation is complete, display six random dice images
+            setTimeout(() => {
+                displayRandomDiceImages();
+            }, 4000);
+        }
+
+        function displayRandomDiceImages() {
+            const resultDisplay = document.getElementById('result-display');
+            const diceContainer = document.getElementById('dice-container');
+            const diceImages = diceContainer.querySelectorAll('.dice');
+
+            // Clear the previous content of the result display
+            resultDisplay.innerHTML = '';
+
+            // Create a container for the heading and random dice images
+            const resultContainer = document.createElement('div');
+            resultContainer.classList.add('result-container');
+
+            // Add the heading to the container
+            resultContainer.innerHTML = '<h2 class="text-center" style="color: #dc3545;">Result Display</h2>';
+
+            // Create a container for the random dice images
+            const randomDiceContainer = document.createElement('div');
+            randomDiceContainer.id = 'random-dice-container';
+            randomDiceContainer.style.display = 'flex';
+            randomDiceContainer.style.flexWrap = 'wrap';
+            randomDiceContainer.style.justifyContent = 'center';
+
+            // Shuffle the array of dice images
+            const shuffledDiceImages = Array.from(diceImages).sort(() => Math.random());
+
+            // Select the first six dice images (with possible duplicates)
+            // Select the first six dice images (with duplicates allowed)
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * shuffledDiceImages.length);
+                const selectedImage = shuffledDiceImages[randomIndex].cloneNode(true);
+
+                // Remove the 'selected' class before cloning
+                selectedImage.classList.remove('selected');
+
+                // Remove the 'id' and 'onclick' attributes
+                selectedImage.removeAttribute('id');
+                selectedImage.removeAttribute('onclick');
+
+                // Remove inline styles
+                selectedImage.style = '';
+
+                // Append the randomly selected image to the random dice container
+                randomDiceContainer.appendChild(selectedImage);
+            }
+            // Append the random dice container to the result container
+            resultContainer.appendChild(randomDiceContainer);
+
+            // Append the result container to the result display
+            resultDisplay.appendChild(resultContainer);
+        }
+
+        function editBet() {
+            // Reset the selected dice and amount when the "Edit" button is clicked
+            selectedDice.classList.remove('selected');
+            selectedDice = null;
+            selectedAmount = null;
+
+            // Update the bet placement message
+            updateBetPlacementMessage();
+
+            // Clear and hide the success message
+            const successMessage = document.getElementById('bet-success-message');
+            successMessage.innerHTML = '';
+            successMessage.classList.add('hidden');
+
+            // Enable further dice and amount selection
+            canChooseBet = true;
+        }
+
+        function displayPreviousBets() {
+            const previousBetsContainer = document.getElementById('previous-bets');
+            previousBetsContainer.innerHTML = '<h3>Previous Bets:</h3>';
+
+            if (previousBets.length > 0) {
+                previousBets.forEach((bet, index) => {
+                    // Create a container for each bet
+                    const betContainer = document.createElement('div');
+
+                    // Display the bet message
+                    const betElement = document.createElement('p');
+                    betElement.textContent = `You chose ${bet.dice} and bet ${bet.amount} Rs.`;
+
+                    // Create "Edit" and "Bet" buttons
+                    const editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.classList.add('btn', 'btn-secondary');
+                    editButton.onclick = () => editPreviousBet(index);
+
+                    const betButton = document.createElement('button');
+                    betButton.textContent = 'Bet';
+                    betButton.classList.add('btn', 'btn-success');
+                    betButton.onclick = () => betAgain(index);
+
+                    // Append elements to the container
+                    betContainer.appendChild(betElement);
+                    betContainer.appendChild(editButton);
+                    betContainer.appendChild(betButton);
+
+                    // Append the container to the previousBetsContainer
+                    previousBetsContainer.appendChild(betContainer);
+                });
+            } else {
+                const noBetsElement = document.createElement('p');
+                noBetsElement.textContent = 'No previous bets.';
+                previousBetsContainer.appendChild(noBetsElement);
+            }
+        }
+
+        function editPreviousBet(index) {
+            // Retrieve the selected bet based on the index
+            const selectedBet = previousBets[index];
+
+            // Prompt the user if they want to make changes
+            const makeChanges = confirm('Do you want to make changes to this bet?');
+
+            if (makeChanges) {
+                // Set the selected dice and amount for editing
+                selectedDice = document.querySelector(`[alt="${selectedBet.dice}"]`);
+                selectedDice.classList.add('selected');
+                selectedAmount = selectedBet.amount;
+
+                // Update the bet placement message
+                updateBetPlacementMessage();
+
+                // Enable further dice and amount selection
+                canChooseBet = true;
+
+                // Remove the specific previous bet
+                previousBets.splice(index, 1);
+
+                // Display the updated previous bets
+                displayPreviousBets();
+            }
+        }
+
+
+        function betAgain(index) {
+            // Simulate the bet process with the selected previous bet
+            const selectedBet = previousBets[index];
+            selectedDice = document.querySelector(`[alt="${selectedBet.dice}"]`);
+            selectedDice.classList.add('selected');
+            selectedAmount = selectedBet.amount;
+
+            // Perform actions when the "Bet" button is clicked
+            // For example, you can send the bet to the server or update game state.
+            console.log(`Bet placed: You chose ${selectedDice.alt} and bet ${selectedAmount} Rs.`);
+
+            // Show the success message
+            const successMessage = document.getElementById('bet-success-message');
+            successMessage.innerHTML = 'Bet successfully!';
+            successMessage.classList.remove('hidden');
+
+            // Disable further dice and amount selection
+            canChooseBet = false;
+        }
+
+        function quitGame() {
+            // Redirect to the home page when Quit Game is clicked
+            window.location.href = '{% url "index" %}';
+        }
+    </script>
+    <!-- User-profile toggle -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function toggleUserProfile() {
+            var userProfileSection = document.getElementById('user-profile-section');
+            userProfileSection.style.display = (userProfileSection.style.display === 'none' || userProfileSection.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+    <script>
+        function openUserProfilePage() {
+            window.location.href = '{% url "User_profile" %}';
+        }
+
+        function openMybalance() {
+            window.location.href = '{% url "check_balance" %}';
+        }
+
+        // function openMybalance() {
+        //     window.location.href = '{% url "MyBalanceWithoutBalance" %}';
+        // }
+
+        function openAddcash() {
+            window.location.href = '{% url "payment_view" %}';
+        }
+
+        function openSetting() {
+            window.location.href = '{% url "Profile_settings" %}';
+        }
+
+        function openInbox() {
+            window.location.href = '{% url "Inbox" %}';
+        }
+
+        function openWithdraw() {
+            window.location.href = '{% url "Withdraw" %}';
+        }
+
+        function openGamehistory() {
+            window.location.href = '{% url "GameHistory" %}';
+        }
+
+        function openLogout() {
+            window.location.href = '{% url "logout" %}';
+        }
+    </script>
+</body>
+
+</html>

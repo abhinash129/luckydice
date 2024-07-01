@@ -1,0 +1,278 @@
+{% extends "DiceApp/base.html" %}
+{% load static %}
+{% block Home %} Home {% endblock Home %}
+
+{% block banner-slider %}
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'DiceApp/images/banner/1.jpg' %}" class="d-block w-100" alt="1">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'DiceApp/images/banner/2.jpg' %}" class="d-block w-100" alt="2">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'DiceApp/images/banner/banner-3.jpg' %}" class="d-block w-100" alt="3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock banner-slider %}
+{% block main-content %}
+<style>
+  .lucky-heading {
+    color: #4CAF50;
+    /* Set your preferred color */
+    font-family: 'Roboto', sans-serif;
+    /* Replace with your preferred font-family */
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .lucky-heading span {
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  .img-fluid rounded {
+    max-width: 100%;
+    max-height: 200px;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 50%;
+    /* Adjust the width as needed */
+  }
+
+  /* Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+  }
+
+  /* Start Button */
+  #startPracticeGameBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #startPracticeGameBtn:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div class="container mt-5">
+  <h1 class="display-3 text-center text-uppercase lucky-heading">
+    <span class="animate__animated animate__heartBeat text-danger">Lucky Dice</span>
+  </h1>
+  <p class="lead text-center text-muted">Feeling lucky? Roll the dice and see what fortune awaits you!</p>
+</div>
+
+{% comment %} image text section {% endcomment %}
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Image Section -->
+    <div class="col-lg-6 mb-4">
+      <img src="{% static 'DiceApp/images/playing.jpg' %}" class="img-fluid rounded" alt="Image">
+    </div>
+
+    <!-- Text Area Section -->
+    <div class="col-lg-6">
+      <div class="text-section">
+        <h2 class="text-primary">Lucky Dice</h2>
+        <p class="lead" id="gameDescription">
+          Lucky Dice, also known as "Langur Burja" in Nepal and "Crown and Anchor" in England and other parts of the
+          world, is a traditional gambling game widely played in India. Unlike conventional dice games, Lucky Dice
+          utilizes a unique six-faced dice, each face adorned with distinct symbols – "Lion," "Horse," "Panda,"
+          "Elephant," "Deer," and "Monkey."
+        </p>
+        <p class="d-none" id="remainingText">
+          The game is typically played by tossing the special dice onto a flat surface, and participants place bets on
+          which symbol will land facing up once the dice come to a rest. The excitement lies in the unpredictability of
+          the outcome, making it a thrilling game of chance.
+          <br>
+          Originating from the cultural fabric of India, Lucky Dice has been a popular pastime for generations. Its
+          simple yet engaging gameplay, coupled with the symbolic significance of the animal images, adds an extra layer
+          of enjoyment for players.
+        <ul>
+          <li>Six dice are rolled, and the player places a bet on one of the six symbols.</li>
+          <li>If no dice show the symbol the player had bet on, then the player loses the bet to the dealer.</li>
+          <li>If one or more dice show the symbol the player had bet on, then the player receives the bet amount
+            multiplied by the number of times the symbol was rolled plus the original bet amount.</li>
+        </ul>
+        </p>
+
+        <button class="btn btn-primary" id="readMoreBtn">Read More</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} second container {% endcomment %}
+<div class="container mt-5">
+  <div class="row">
+    <!-- Text Area Section (Left Side) -->
+    <div class="col-lg-6">
+      <div class="text-section">
+        <h2 class="text-primary">Lucky Dice</h2>
+        <p class="lead" id="gameDescription">
+          Lucky Dice, also known as "Langur Burja" in Nepal and "Crown and Anchor" in England and other parts of the
+          world, is a traditional gambling game widely played in India. Unlike conventional dice games, Lucky Dice
+          utilizes a unique six-faced dice, each face adorned with distinct symbols "Lion," "Horse," "Panda,"
+          "Elephant," "Deer," and "Monkey."
+        </p>
+
+        <button class="btn btn-primary" onclick="window.location='{% url 'profile' %}'">Play Now</button>
+
+      </div>
+    </div>
+
+    <!-- Image Section (Right Side) -->
+    <div class="col-lg-6 mb-4">
+      <img src="{% static 'DiceApp/images/Dice-hero.jpg' %}" class="img-fluid rounded" alt="Image">
+    </div>
+  </div>
+</div>
+
+{% comment %} Forum and Learn {% endcomment %}
+<div class="container mt-5 bg-primary text-white py-4">
+  <div class="row align-items-center">
+    <!-- Circle with Image and Forum Button (Left Side) -->
+    <div class="col-lg-6 text-center mb-4">
+      <div class="rounded-circle overflow-hidden mx-auto mb-2" style="width: 100px; height: 100px;">
+        <img src="{% static 'DiceApp/images/forum.png' %}" class="img-fluid" alt="Forum Image">
+      </div>
+      <p>Forum</p>
+      <p>Community Discussion</p>
+      <button class="btn btn-secondary btn-lg">Forum</button>
+    </div>
+
+    <!-- Circle with Image and Learn Button (Right Side) -->
+    <div class="col-lg-6 text-center mb-4">
+      <div class="rounded-circle overflow-hidden mx-auto mb-2" style="width: 100px; height: 100px;">
+        <img src="{% static 'DiceApp/images/learn.png' %}" class="img-fluid" alt="Learn Image">
+      </div>
+      <p>Learn</p>
+      <p>The basics of LuckyDice</p>
+      <button class="btn btn-secondary btn-lg" onclick="window.location='{% url 'How-to-play' %}'">Learn</button>
+
+    </div>
+  </div>
+</div>
+{% if user.is_authenticated %}
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Welcome to Lucky Dice Game</h2>
+    <p>Start with the practice game.</p>
+    <button id="startPracticeGameBtn">Start</button>
+  </div>
+</div>
+{% endif %}
+<script>
+  document.getElementById('readMoreBtn').addEventListener('click', function () {
+    var remainingText = document.getElementById('remainingText');
+    remainingText.classList.toggle('d-none');
+    this.innerText = remainingText.classList.contains('d-none') ? 'Read More' : 'Read Less';
+  });
+
+
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var startGameBtn = document.getElementById("startPracticeGameBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the page loads, show the modal
+  window.onload = function () {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks the button, redirect to the practice game page
+  startGameBtn.onclick = function () {
+    window.location.href = "{% url 'PracticeGame' %}"; // Replace "/practice-game" with the URL of your practice game page
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+</script>
+
+{% endblock main-content %}
