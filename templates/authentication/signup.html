@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Authentication</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            /* Ensures the button doesn't take full width */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-check {
+            margin-top: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-check input {
+            margin-right: 200px;
+            
+        }
+
+        .form-check label {
+            font-weight: normal;
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .form-check a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .form-check a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <form action="/signup" method="post">
+        <h3>Register </h3>
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Create a username (only letters and numbers)"
+            required>
+
+        <label for="fname">First name</label>
+        <input type="text" id="fname" name="fname" placeholder="Enter your First name" required>
+
+        <label for="lname">Last name</label>
+        <input type="text" id="lname" name="lname" placeholder="Enter your Last name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your Email Address" required>
+
+        <label for="pass1">Password</label>
+        <input type="password" id="pass1" name="pass1" placeholder="Create Password" required>
+
+        <label for="pass2">Confirm Password</label>
+        <input type="password" id="pass2" name="pass2" placeholder="Confirm your Password" required>
+        <br>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="acceptTerms" name="acceptTerms" required>
+        </div>
+        
+        <div class="form-check">
+            <label class="form-check-label" for="acceptTerms">I accept the <a href="/terms" target="_blank">terms and
+                    conditions</a></label>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
