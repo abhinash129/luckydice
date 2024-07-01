@@ -1,0 +1,106 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Styles for the bank details page */
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        
+        .bank-details-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        h1 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        
+        .bank-details-form {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+        }
+        
+        .bank-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .submit-button {
+            background-color: #007bff;
+            /* Blue color for the button */
+            color: #fff;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+    </style>
+    <title>Bank Details</title>
+</head>
+
+<body>
+    <div class="bank-details-container">
+        <h1>Bank Account Details</h1>
+        <form class="bank-details-form">
+            <label for="account-number">Account Number:</label>
+            <input type="text" id="account-number" name="accountNumber" class="bank-input" required>
+
+            <label for="re-enter-account-number">Re-enter Account Number:</label>
+            <input type="text" id="re-enter-account-number" name="reEnterAccountNumber" class="bank-input" required>
+
+            <label for="ifsc-code">IFSC Code:</label>
+            <input type="text" id="ifsc-code" name="ifscCode" class="bank-input" placeholder="11 digit code on your cheque" required>
+
+            <label for="account-holders-name">Account Holder's Name:</label>
+            <input type="text" id="account-holders-name" name="accountHoldersName" class="bank-input" placeholder="Must match PAN holder's name*" required>
+
+            <button type="button" class="submit-button" onclick="submitBankDetails()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitBankDetails() {
+            // Add logic to handle the submission of bank details
+            // You can use AJAX to send the details to the server
+            alert("Bank details submitted successfully!");
+        }
+    </script>
+</body>
+
+</html>

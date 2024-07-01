@@ -1,0 +1,235 @@
+body {
+    padding-top: 5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #1e5799, #7db9e8);
+    color: #ffffff;
+}
+
+.container-fluid {
+    border: 2px solid #6c757d;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#dice-section {
+    min-height: 300px;
+    background: linear-gradient(to right, #ffffff, #f8f9fa);
+    border: 2px solid #6c757d;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dice-image {
+    max-width: 100%;
+    height: auto;
+    margin: 10px;
+}
+
+#dice-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: center;
+}
+
+.dice {
+    width: 100px;
+    height: 100px;
+    margin: 23px;
+    border: 2px solid #333;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    transition: transform 1000ms linear;
+}
+
+#bet-history,
+#result-display,
+#bet-placement,
+#currency-chips {
+    bottom: 0;
+    right: 0;
+    border: 2px solid #6c757d;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+
+h2 {
+    color: #343a40;
+    border-bottom: 2px solid #6c757d;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* Currency-chips */
+
+#currency-chips .currency-images {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.currency {
+    width: 90px;
+    /* Adjust the width as needed */
+    height: 90px;
+    /* Adjust the height as needed */
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+/* Style for the selected dice */
+
+.selected {
+    border: 3px solid #28a745;
+}
+
+
+/* Style for the selected amount */
+
+.currency.selected {
+    border: 3px solid red;
+}
+
+
+/* Style for the bet placement message */
+
+#bet-placement-message {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #28a745;
+    /* Adjust the margin as needed */
+}
+
+#betButton,
+#editButton {
+    display: inline-block;
+}
+
+#bet-success-message {
+    display: none;
+}
+
+#previous-bets div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#previous-bets button {
+    margin-left: 10px;
+}
+
+#result-display {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+}
+
+#result-display img {
+    width: 60px;
+    /* Adjust the width as needed for clear visibility */
+    height: auto;
+    margin: 5px;
+    /* Add some margin between images for better visibility */
+}
+
+.bet-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #6c757d;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+
+/* user-profile toggle */
+
+#user-profile-menu {
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+    padding: 2px;
+}
+
+#user-profile-section {
+    display: none;
+    position: fixed;
+    bottom: 0; /* Position the section at the bottom */
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+
+
+#close-profile-btn {
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+    padding: 10px;
+}
+
+.btn-group-vertical {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    padding-top: 30px
+}
+
+.btn {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.username {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: #333;
+    /* Set your desired text color */
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Cash</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .container {
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        h1 {
+            color: #2575fc;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            color: #555;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .input-group-prepend .input-group-text {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            color: #fff;
+        }
+        
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .btn-primary {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+            margin-bottom: 10px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1c4cc4;
+        }
+        
+        .icon {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Add Cash</h1>
+        <form id="addCashForm" method="post" action="{% url 'initiate_payment' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="amount" class="form-label">Enter the amount you want to add:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <i class="fas fa-rupee-sign icon"></i>
+                        </span>
+                    </div>
+                    <input type="number" class="form-control" id="amount" name="amount" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="addCashButton">
+                <i class="fas fa-coins icon"></i> Add Cash
+            </button>
+        </form>
+        <button class="btn btn-primary" id="payWithRazorpayButton">
+            <i class="fab fa-cc-visa icon"></i> Pay with Razorpay
+        </button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('payWithRazorpayButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                var amount = parseFloat(document.getElementById('amount').value);
+                var options = {
+                    key: 'rzp_test_AigyCc6s5GehQ0',
+                    amount: amount * 100,
+                    currency: 'INR',
+                    name: 'Qualde Digital Services',
+                    description: 'Add Cash to Wallet',
+                    handler: function(response) {
+                        console.log(response);
+                        // After successful payment, you can trigger a form submission or other actions to update the wallet
+                        document.getElementById('addCashForm').submit();
+                    },
+                    prefill: {
+                        email: 'user@example.com',
+                    },
+                    theme: {
+                        color: '#2575fc'
+                    }
+                };
+                var rzp = new Razorpay(options);
+                rzp.open();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+.navbar-brand img {
+    height: 50px;
+    width: 70px;
+}
+
+
+/* how to play */
+
+.how-to-play {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.how-to-play img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.how-to-play-content {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10px;
+    color: black;
+}
+
+.how-to-play-content p {
+    font-weight: 500;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+}
+
+.how-to-play-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background: linear-gradient(135deg, #3498db, #5e69b5);
+}
+
+.stylish-heading {
+    font-family: 'Pacifico', cursive;
+    font-size: 48px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+    padding: 20px;
+    background-color: #DBA90D;
+    border: 3px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.how-to-play-content h3 {
+    color: black;
+}
+
+.how-to-play-content li {
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+}
+
+

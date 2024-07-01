@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Deposits</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #007bff;
+            text-align: center;
+        }
+        
+        div {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        div:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .step-links {
+            display: inline-block;
+        }
+        
+        .step-links a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 8px 12px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .step-links a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        
+        .current {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Deposits</h1>
+
+        {% if deposit_messages %}
+    {% for message in deposit_messages %}
+        <div>
+            <p>Date: {{ message.date|date:"F j, Y" }}</p>
+            
+            <p>Amount: {{ message.message }}</p>
+            <!-- Add more details if needed -->
+        </div>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if deposit_messages.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ deposit_messages.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ deposit_messages.number }} of {{ deposit_messages.paginator.num_pages }}.
+            </span>
+
+            {% if deposit_messages.has_next %}
+                <a href="?page={{ deposit_messages.next_page_number }}">next</a>
+                <a href="?page={{ deposit_messages.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% else %}
+    <p>No deposit messages available.</p>
+{% endif %}
+
+
+    </div>
+</body>
+
+</html>
+ 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+</head>
+
+<body>
+
+    <!-- Contact Us Section -->
+    <div class="container mt-6">
+        <div class="row">
+            <!-- Google Map (Left Side) -->
+            <div class="col-lg-6">
+                <div id="map"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.755745769511!2d77.68564437445828!3d12.987468314531409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1171e7f3bf41%3A0x69aa2b3eb2653235!2sQUALDE%20DIGITAL%20SERVICES%20PVT%20LTD.!5e0!3m2!1sen!2sin!4v1706074072462!5m2!1sen!2sin"
+                    width="530" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <!-- Contact Form (Right Side) -->
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <h2 class="text-primary mb-4">Contact Us</h2>
+                </div>
+                <!-- Include your contact form code here -->
+                <!-- Example: -->
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dummy function to simulate form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submitted! (Note: This is a static example. In a real scenario, you need server-side processing.)');
+        });
+    </script>
+
+</body>
+
+</html>

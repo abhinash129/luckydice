@@ -1,0 +1,252 @@
+/* Base styles */
+
+body {
+    font-family: 'Arial', sans-serif; /* Changed font for better readability */
+    background-color: #f2f2f2; /* Light gray background */
+}
+
+.how-to-play-content {
+    text-align: center;
+    padding: 30px; /* Increased padding for better spacing */
+    background-color: #f7edb6; /* White background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+.stylish-heading {
+    color: #ff5722;
+    margin-bottom: 20px; /* Increased margin for separation */
+    font-size: 2.8em; /* Larger font size for heading */
+    font-family: 'Pacifico', cursive; /* Consistent font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.sub-heading {
+    color: #333;
+    font-size: 1.3em; /* Slightly increased font size */
+}
+
+.how-to-play {
+    margin-top: 30px; /* Increased margin for better spacing */
+    margin-bottom: 30px;
+}
+
+.how-to-play img {
+    max-width: 100%;
+    border-radius: 15px; /* Rounded corners for images */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced box shadow */
+}
+
+.steps {
+    margin-top: 30px; /* Increased margin for better separation */
+    text-align: left;
+    padding: 10px 20px; /* Add some padding for better spacing */
+}
+
+.step {
+    margin-bottom: 30px; /* Space between steps */
+    padding: 15px;
+    background: linear-gradient(135deg, #ffefba, #ffffff); /* Light gradient background */
+    border-left: 5px solid #ff5722; /* Colorful border on the left */
+    border-radius: 5px; /* Rounded corners */
+    position: relative;
+    overflow: hidden;
+}
+
+.step h3 {
+    color: #333;
+    font-size: 1.6em; /* Larger font size for step headings */
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif; /* Stylish font */
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.step h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #ff5722; /* Underline effect */
+}
+
+.step ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.step ul li {
+    margin-bottom: 10px;
+    font-size: 1.2em; /* Increased font size for step content */
+    line-height: 1.6; /* Improved line height for readability */
+    font-family: 'Open Sans', sans-serif; /* Stylish font */
+    color: #555; /* Slightly darker text for readability */
+    padding-left: 20px;
+    position: relative;
+}
+
+.step ul li::before {
+    content: '\f00c'; /* Unicode for a check mark */
+    font-family: 'Font Awesome 5 Free'; /* Using Font Awesome */
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #ff5722; /* Icon color */
+    font-size: 1em; /* Icon size */
+}
+
+/* Animation for step items */
+.step ul li {
+    animation: slideIn 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.step ul li:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+.step ul li:nth-child(even) {
+    animation-delay: 0.4s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive design using media queries */
+
+@media (max-width: 1024px) {
+    .step {
+        padding: 10px;
+    }
+
+    .step h3 {
+        font-size: 1.5em; /* Adjusted font size for tablets */
+    }
+
+    .step ul li {
+        font-size: 1.1em; /* Adjusted font size for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .step h3 {
+        font-size: 1.4em; /* Adjusted font size for smaller tablets */
+    }
+
+    .step ul li {
+        font-size: 1em; /* Adjusted font size for smaller tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .step h3 {
+        font-size: 1.2em; /* Adjusted font size for mobile devices */
+    }
+
+    .step ul li {
+        font-size: 0.9em; /* Adjusted font size for mobile devices */
+    }
+}
+
+@media (max-width: 480px) {
+    .step h3 {
+        font-size: 1em; /* Adjusted font size for smaller mobile screens */
+    }
+
+    .step ul li {
+        font-size: 0.8em; /* Adjusted font size for smaller mobile screens */
+    }
+}
+
+
+.more-info {
+    margin-top: 40px; /* Increased top margin for better separation */
+}
+
+.more-info h3 {
+    color: #333;
+    font-size: 1.8em; /* Larger font size for more info headings */
+    margin-bottom: 15px; /* Increased bottom margin for better readability */
+}
+
+.more-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.more-info ul li {
+    margin-bottom: 10px;
+    font-size: 1.3em; /* Increased font size for more info content */
+}
+
+.more-info ul li a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.more-info ul li a:hover {
+    color: #0056b3;
+}
+
+/* Responsive design using media queries */
+
+@media (max-width: 1024px) {
+    .stylish-heading {
+        font-size: 2.5em; /* Adjusted font size for tablets */
+    }
+
+    .sub-heading {
+        font-size: 1.2em; /* Adjusted font size for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .stylish-heading {
+        font-size: 2.2em; /* Adjusted font size for smaller tablets */
+    }
+
+    .sub-heading {
+        font-size: 1.1em; /* Adjusted font size for smaller tablets */
+    }
+
+    .how-to-play img {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .stylish-heading {
+        font-size: 2em; /* Adjusted font size for mobile devices */
+    }
+
+    .sub-heading {
+        font-size: 1em; /* Adjusted font size for mobile devices */
+    }
+
+    .step h3 {
+        font-size: 1.6em; /* Adjusted font size for step headings on mobile devices */
+    }
+}
+
+@media (max-width: 480px) {
+    .stylish-heading {
+        font-size: 1.8em; /* Adjusted font size for smaller mobile screens */
+    }
+
+    .sub-heading {
+        font-size: 0.9em; /* Adjusted font size for smaller mobile screens */
+    }
+
+    .step h3 {
+        font-size: 1.4em; /* Adjusted font size for smaller mobile screens */
+    }
+}

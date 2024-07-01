@@ -1,0 +1,419 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+#user-profile-menu {
+    cursor: pointer;
+    font-size: 24px;
+    color: #007bff;
+    padding: 10px;
+}
+
+#user-profile-section {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Position on the left side */
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#close-profile-btn {
+    cursor: pointer;
+    font-size: 24px;
+    color: #007bff;
+    padding: 10px;
+}
+
+.btn-group-vertical {
+    width: 100%;
+    padding: 20px;
+}
+
+.btn {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+#game-table {
+    margin-left: 250px;
+    /* Add other game table styles as needed */
+}
+
+#wallet-container {
+    background-color: #08AEEA;
+    background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 30px;
+    width: 250px;
+    height: 200px;
+    color: white;
+}
+
+#walletBalance {
+    font-size: 20px;
+}
+
+h1 {
+    color: #000;
+    margin-right: 300px;
+    font-size: 70px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#countdown.animate {
+    animation: pulse 1s infinite;
+}
+
+#add {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4c53af;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#add:hover {
+    background-color: #4CAF50;
+}
+
+.col-4,
+.col-8 {
+    display: inline-block;
+    vertical-align: top;
+    flex: 1;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    /* Text color for better visibility on the background */
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background for the table header */
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    padding: 8px;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#roll {
+    padding: 10px;
+    font-size: 18px;
+    width: 100px;
+    background-color: #af4c54;
+    /* Green color for the button */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: auto;
+    transition: background-color 0.3s ease;
+}
+
+#roll:hover {
+    background-color: #45a049;
+    /* Darker shade of green on hover */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Add animation class to start the animation */
+
+.rotate-animation {
+    animation: rotate 0.1s linear infinite;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 35%;
+    height: 50%;
+    gap: 10px;
+    margin-top: 20px;
+    margin: auto;
+    /* Centers horizontally */
+    /* margin-top: 10vh; Adjust the top margin as needed */
+    border: 2px solid red;
+    padding: 30px;
+    background-color: #DAF7A6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.dice {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border: 2px solid #333;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dice-selected {
+    box-shadow: 0 0 10px red;
+}
+
+#message {
+    margin-top: 10px;
+    color: #4caf50;
+    font-weight: bold;
+    text-align: center;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: center;
+    color: #4caf50;
+}
+
+#result-heading {
+    font-weight: bold;
+}
+
+#result-images {
+    display: flex;
+    justify-content: center;
+}
+
+#congratulations,
+#sorry {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #4caf50;
+}
+
+.betting-container {
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5px;
+    float: right;
+    margin-right: 200px;
+    padding-right: 0;
+    text-align: center;
+    gap: 30px;
+}
+
+.bet-amount:hover {
+    transform: scale(1.1);
+}
+
+.choose-amount-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.choose-amount-btn:hover {
+    background-color: #455aa0;
+    /* Darker green */
+}
+
+.bet-amount:hover {
+    border: 1px solid #ffd900;
+    /*Change the border color for selected bet*/
+    transform: scale(1.1);
+}
+
+.bet-amount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    border-radius: 10%;
+    /* Creates a circle */
+    border: none;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: transform 0.8s ease-in-out;
+}
+
+.selected {
+    border-color: #45A049 !important;
+    /* Highlight selected bet */
+}
+
+.selected-bet {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    color: #4caf50;
+    font-weight: bold;
+    margin-right: auto;
+}
+
+.selected-bet p {
+    margin: 0;
+}
+
+.selected-bet span {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.container-fluid {
+    padding-top: 20px;
+    /* Add some top padding for better spacing */
+    padding-left: 500px;
+}
+
+#countdown {
+    font-size: 40px;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 10px;
+    /* Space between Time Left and Game History */
+    margin-top: 20px;
+    margin-left: 40px;
+    animation: pulse 1s infinite;
+}
+
+#game-history {
+    /* border: 1px solid #ccc; */
+    padding: 20px;
+    padding-left: 100px;
+    border-radius: 5px;
+    /* background-color: #f9f9f9; */
+    margin-top: 10px;
+    text-align: center;
+    color: red;
+}
+
+#game-history h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #4caf50;
+    font-size: 30px;
+}
+
+#round-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.round-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.round-number {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.dice-history {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 2px solid #4caf50;
+    border-radius: 4px;
+}

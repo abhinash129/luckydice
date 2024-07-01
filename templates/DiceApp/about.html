@@ -1,0 +1,52 @@
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      font-size: 20px;
+      color: #333;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #666;
+    }
+</style>
+{% extends "DiceApp/base.html" %}
+{% load static %} 
+{% block About %} About {% endblock About %} 
+{% block main-content %}
+<header>
+    <h1>Welcome to Luckydice by Qualde Digital Services Pvt Ltd!</h1>
+</header>
+<main>
+    <section>
+        <h2>About Us</h2>
+        <p>At Luckydice, we're all about bringing the fun of the classic game of 'Jhandi Mundi' into the digital world. Our team at Qualde Digital Services Pvt Ltd has been working really hard to make a game that you'll love to play!</p>
+        <p>Luckydice isn't just any game. It's a special place where you can roll the dice and have a blast with your friends, right from the comfort of your own device. Whether you've played 'Jhandi Mundi' a million times before or you're totally new to
+            the game, we've made sure that everyone can jump in and enjoy themselves.</p>
+        <p>As game makers, we're super passionate about making games that you'll want to keep playing over and over again. With Luckydice, our main goal is to give you an awesome gaming experience that you won't be able to get enough of!</p>
+        <p>So, thank you so much for choosing Luckydice by Qualde Digital Services Pvt Ltd. Come on over and let's roll some dice together! We can't wait to see you in the game!</p>
+    </section>
+</main>
+{% endblock main-content %}
